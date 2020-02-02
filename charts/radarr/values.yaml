@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: linuxserver/sonarr
+  repository: linuxserver/radarr
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -61,14 +61,14 @@ tolerations: []
 
 affinity: {}
 
-sonarr:
-  port: 8989
+radarr:
+  port: 7878
   puid: 1000
   pgid: 1000
   tz: Etc/UTC
   config:
-    hostPath: /config/sonarr
-  tv:
-    hostPath: /tv
+    hostPath: /config/radarr
+  movies:
+    hostPath: /movies
   downloads:
     hostPath: /downloads

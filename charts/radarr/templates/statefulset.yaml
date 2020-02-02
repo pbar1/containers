@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "sonarr.fullname" . }}
+  name: {{ include "radarr.fullname" . }}
   labels:
-    {{- include "sonarr.labels" . | nindent 4 }}
+    {{- include "radarr.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "sonarr.fullname" . }}
+  serviceName: {{ include "radarr.fullname" . }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "sonarr.selectorLabels" . | nindent 6 }}
+      {{- include "radarr.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "sonarr.selectorLabels" . | nindent 8 }}
+        {{- include "radarr.selectorLabels" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "sonarr.serviceAccountName" . }}
+      serviceAccountName: {{ include "radarr.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -30,15 +30,15 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.sonarr.port }}
+              containerPort: {{ .Values.radarr.port }}
               protocol: TCP
           env:
             - name: PUID
-              value: {{ .Values.sonarr.puid | quote }}
+              value: {{ .Values.radarr.puid | quote }}
             - name: PGID
-              value: {{ .Values.sonarr.pgid | quote }}
+              value: {{ .Values.radarr.pgid | quote }}
             - name: TZ
-              value: {{ .Values.sonarr.tz | quote }}
+              value: {{ .Values.radarr.tz | quote }}
           livenessProbe:
             httpGet:
               path: /
@@ -50,8 +50,8 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: tv
-              mountPath: /tv
+            - name: movies
+              mountPath: /movies
             - name: downloads
               mountPath: /downloads
               readOnly: true
@@ -72,10 +72,10 @@ spec:
       volumes:
         - name: config
           hostPath:
-            path: {{ .Values.sonarr.config.hostPath }}
-        - name: tv
+            path: {{ .Values.radarr.config.hostPath }}
+        - name: movies
           hostPath:
-            path: {{ .Values.sonarr.tv.hostPath }}
+            path: {{ .Values.radarr.movies.hostPath }}
         - name: downloads
           hostPath:
-            path: {{ .Values.sonarr.downloads.hostPath }}
+            path: {{ .Values.radarr.downloads.hostPath }}
