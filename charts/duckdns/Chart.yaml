@@ -1,0 +1,6 @@
+apiVersion: v2
+name: duckdns
+description: Free service which will point DNS to an IP of your choice
+type: application
+version: 0.0.0
+appVersion: d16088ad-ls40
