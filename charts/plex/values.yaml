@@ -64,7 +64,7 @@ affinity: {}
 hostNetwork: true
 
 plex:
-  port: 8989
+  port: 32400
   puid: 1000
   pgid: 1000
   tz: Etc/UTC
