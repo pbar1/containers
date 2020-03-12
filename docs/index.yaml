@@ -2,10 +2,10 @@ apiVersion: v1
 entries:
   bazarr:
   - apiVersion: v2
-    appVersion: v0.8.4.2-ls71
-    created: "2020-03-12T13:59:51.455852-07:00"
+    appVersion: latest
+    created: "2020-03-12T16:02:22.000043-07:00"
     description: Manages and downloads subtitles based on your requirements
-    digest: 911cf4adfcf4001af940e595b9c7d2c16f458c6f07580a0bef6fffa4601fc5a0
+    digest: 0a4b904fd5640b76d5f6146363ec59cee76902fc1925b2c3833df1adf5e5172f
     name: bazarr
     type: application
     urls:
@@ -13,21 +13,32 @@ entries:
     version: 0.0.0
   duckdns:
   - apiVersion: v2
-    appVersion: d16088ad-ls40
-    created: "2020-03-12T13:59:51.45626-07:00"
+    appVersion: latest
+    created: "2020-03-12T16:02:22.000497-07:00"
     description: Free service which will point DNS to an IP of your choice
-    digest: 2c3413e1c5f3cd0a56e641756f1492d323cbe08b944d92be40233868701a3c5a
+    digest: fdbcaa0915d08fcc7f405470ad2bbd896aa86522db4eb6ada4f9884f373cadba
     name: duckdns
     type: application
     urls:
     - https://pbar1.github.io/containers/duckdns-0.0.0.tgz
     version: 0.0.0
+  plex:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2020-03-12T16:02:22.001014-07:00"
+    description: Streaming media server for movies, TV, and more
+    digest: 100feb263b2e4d7a3db203bdd0383a0fe8bcb275029a6257655d05af0a4bfd9b
+    name: plex
+    type: application
+    urls:
+    - https://pbar1.github.io/containers/plex-0.0.0.tgz
+    version: 0.0.0
   radarr:
   - apiVersion: v2
-    appVersion: 3.0.0.2609-ls2
-    created: "2020-03-12T13:59:51.45679-07:00"
-    description: A fork of Sonarr to work with movies à la Couchpotato
-    digest: 053d24ac7515fb3579c6326febc4cd6731ff70c8eee83423dbbcaa516260d596
+    appVersion: latest
+    created: "2020-03-12T16:02:22.001492-07:00"
+    description: A fork of Sonarr to work with movies
+    digest: de14df4359ecda77ab213d01f91b1df0b3701316176314c878546a0e1d8a7e58
     name: radarr
     type: application
     urls:
@@ -35,13 +46,13 @@ entries:
     version: 0.0.0
   sonarr:
   - apiVersion: v2
-    appVersion: 2.0.0.5338-ls47
-    created: "2020-03-12T13:59:51.457299-07:00"
+    appVersion: latest
+    created: "2020-03-12T16:02:22.001972-07:00"
     description: Smart PVR for newsgroup and bittorrent users
-    digest: bb63f42df07842012b46807871e381aca8d61bfc4a918195a3e83bb373af1c80
+    digest: c8cdabd298d01a043ae1b0e285a232e8f25f52bf0291d5b1d1bf50f18a02c039
     name: sonarr
     type: application
     urls:
     - https://pbar1.github.io/containers/sonarr-0.0.0.tgz
     version: 0.0.0
-generated: "2020-03-12T13:59:51.454594-07:00"
+generated: "2020-03-12T16:02:21.99873-07:00"

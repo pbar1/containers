@@ -3,4 +3,4 @@ name: bazarr
 description: Manages and downloads subtitles based on your requirements
 type: application
 version: 0.0.0
-appVersion: v0.8.4.2-ls71
+appVersion: latest
