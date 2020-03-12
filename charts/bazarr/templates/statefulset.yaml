@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "sonarr.fullname" . }}
+  name: {{ include "bazarr.fullname" . }}
   labels:
-    {{- include "sonarr.labels" . | nindent 4 }}
+    {{- include "bazarr.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "sonarr.fullname" . }}
+  serviceName: {{ include "bazarr.fullname" . }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "sonarr.selectorLabels" . | nindent 6 }}
+      {{- include "bazarr.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "sonarr.selectorLabels" . | nindent 8 }}
+        {{- include "bazarr.selectorLabels" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "sonarr.serviceAccountName" . }}
+      serviceAccountName: {{ include "bazarr.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -30,23 +30,22 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.sonarr.port }}
+              containerPort: {{ .Values.bazarr.port }}
               protocol: TCP
           env:
             - name: PUID
-              value: {{ .Values.sonarr.puid | quote }}
+              value: {{ .Values.bazarr.puid | quote }}
             - name: PGID
-              value: {{ .Values.sonarr.pgid | quote }}
+              value: {{ .Values.bazarr.pgid | quote }}
             - name: TZ
-              value: {{ .Values.sonarr.tz | quote }}
+              value: {{ .Values.bazarr.tz | quote }}
           volumeMounts:
             - name: config
               mountPath: /config
+            - name: movies
+              mountPath: /movies
             - name: tv
               mountPath: /tv
-            - name: downloads
-              mountPath: /downloads
-              readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -64,10 +63,10 @@ spec:
       volumes:
         - name: config
           hostPath:
-            path: {{ .Values.sonarr.config.hostPath }}
+            path: {{ .Values.bazarr.config.hostPath }}
+        - name: movies
+          hostPath:
+            path: {{ .Values.bazarr.movies.hostPath }}
         - name: tv
           hostPath:
-            path: {{ .Values.sonarr.tv.hostPath }}
-        - name: downloads
-          hostPath:
-            path: {{ .Values.sonarr.downloads.hostPath }}
+            path: {{ .Values.bazarr.tv.hostPath }}

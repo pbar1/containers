@@ -1,0 +1,47 @@
+apiVersion: v1
+entries:
+  bazarr:
+  - apiVersion: v2
+    appVersion: v0.8.4.2-ls71
+    created: "2020-03-12T13:59:51.455852-07:00"
+    description: Manages and downloads subtitles based on your requirements
+    digest: 911cf4adfcf4001af940e595b9c7d2c16f458c6f07580a0bef6fffa4601fc5a0
+    name: bazarr
+    type: application
+    urls:
+    - https://pbar1.github.io/containers/bazarr-0.0.0.tgz
+    version: 0.0.0
+  duckdns:
+  - apiVersion: v2
+    appVersion: d16088ad-ls40
+    created: "2020-03-12T13:59:51.45626-07:00"
+    description: Free service which will point DNS to an IP of your choice
+    digest: 2c3413e1c5f3cd0a56e641756f1492d323cbe08b944d92be40233868701a3c5a
+    name: duckdns
+    type: application
+    urls:
+    - https://pbar1.github.io/containers/duckdns-0.0.0.tgz
+    version: 0.0.0
+  radarr:
+  - apiVersion: v2
+    appVersion: 3.0.0.2609-ls2
+    created: "2020-03-12T13:59:51.45679-07:00"
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: 053d24ac7515fb3579c6326febc4cd6731ff70c8eee83423dbbcaa516260d596
+    name: radarr
+    type: application
+    urls:
+    - https://pbar1.github.io/containers/radarr-0.0.0.tgz
+    version: 0.0.0
+  sonarr:
+  - apiVersion: v2
+    appVersion: 2.0.0.5338-ls47
+    created: "2020-03-12T13:59:51.457299-07:00"
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: bb63f42df07842012b46807871e381aca8d61bfc4a918195a3e83bb373af1c80
+    name: sonarr
+    type: application
+    urls:
+    - https://pbar1.github.io/containers/sonarr-0.0.0.tgz
+    version: 0.0.0
+generated: "2020-03-12T13:59:51.454594-07:00"
