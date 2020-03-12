@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: radarr
+spec: {}
+
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: radarr
+  namespace: kube-system
+spec:
+  repo: https://pbar1.github.io/containers
+  chart: radarr
+  version: 0.0.0
+  targetNamespace: radarr
+  valuesContent: |-
+    radarr:
+      tz: America/Los_Angeles
+      config:
+        hostPath: /data/config/radarr
+      tv:
+        hostPath: /data/tvshows
+      downloads:
+        hostPath: /data/downloads
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
