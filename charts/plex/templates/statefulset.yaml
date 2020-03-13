@@ -29,10 +29,6 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: {{ .Values.plex.port }}
-              protocol: TCP
           env:
             - name: PUID
               value: {{ .Values.plex.puid | quote }}
