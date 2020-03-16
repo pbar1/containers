@@ -38,6 +38,8 @@ spec:
               value: {{ .Values.plex.tz | quote }}
             - name: VERSION
               value: {{ .Values.plex.version | quote }}
+            - name: PLEX_CLAIM
+              value: {{ .Values.plex.claimToken | quote }}
           volumeMounts:
             - name: config
               mountPath: /config

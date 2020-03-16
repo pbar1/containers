@@ -68,6 +68,7 @@ plex:
   pgid: 1000
   tz: Etc/UTC
   version: docker
+  # claimToken: 
   config:
     hostPath: /config/plex
   tv:

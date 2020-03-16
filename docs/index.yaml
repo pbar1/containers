@@ -3,9 +3,9 @@ entries:
   bazarr:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-03-12T17:15:23.611358-07:00"
+    created: "2020-03-15T21:46:18.69401461-07:00"
     description: Manages and downloads subtitles based on your requirements
-    digest: c1d9a3e60b915cb6c84db0f42d1c38b162425c85b097e2d5ecff025b9517325a
+    digest: a694ed1274b673620fde916216854d91a9c0fc475450beb4bb931f8b9bcdbb08
     name: bazarr
     type: application
     urls:
@@ -14,9 +14,9 @@ entries:
   duckdns:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-03-12T17:15:23.611746-07:00"
+    created: "2020-03-15T21:46:18.694272384-07:00"
     description: Free service which will point DNS to an IP of your choice
-    digest: e681d5e61cbebc3891e0ff9c770097e3773f07fe614677478d680b459ad35a12
+    digest: 137188ab32d1a8383fae52426d47ccae040f4f087bf659f71f8b5182c3565dfe
     name: duckdns
     type: application
     urls:
@@ -25,9 +25,9 @@ entries:
   plex:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-03-12T17:15:23.612241-07:00"
+    created: "2020-03-15T21:46:18.694627752-07:00"
     description: Streaming media server for movies, TV, and more
-    digest: 4756aa52fe22a8aa8868277006bc3a9104e3e2136bc1b76644f39d5f3bab9e7c
+    digest: d4730f6ff5087f34b99e453e3ad70ec108fdb5df948598c383254edf4460afe5
     name: plex
     type: application
     urls:
@@ -36,9 +36,9 @@ entries:
   radarr:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-03-12T17:15:23.61275-07:00"
+    created: "2020-03-15T21:46:18.694940269-07:00"
     description: A fork of Sonarr to work with movies
-    digest: 247f25fd05f88ea89e87840ab35a53b6d990bf576401d633605a461795527e6d
+    digest: 1e9a00b24da0c6190cc26760b419d2d324f75137532364c0acb5178d119847be
     name: radarr
     type: application
     urls:
@@ -47,12 +47,12 @@ entries:
   sonarr:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-03-12T17:15:23.613229-07:00"
+    created: "2020-03-15T21:46:18.695229162-07:00"
     description: Smart PVR for newsgroup and bittorrent users
-    digest: 69dadd688119ea53a017162b911d45c8cc2227bc70a35875682cd7a77f83c87f
+    digest: 7c06a4ca53379646f18121a062dae25301e4d8514259b2d42950e0f3906e46b5
     name: sonarr
     type: application
     urls:
     - https://pbar1.github.io/containers/sonarr-0.0.0.tgz
     version: 0.0.0
-generated: "2020-03-12T17:15:23.609931-07:00"
+generated: "2020-03-15T21:46:18.693552184-07:00"
