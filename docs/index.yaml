@@ -3,9 +3,9 @@ entries:
   bazarr:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-03-15T21:46:18.69401461-07:00"
+    created: "2020-03-17T00:12:53.892908-07:00"
     description: Manages and downloads subtitles based on your requirements
-    digest: a694ed1274b673620fde916216854d91a9c0fc475450beb4bb931f8b9bcdbb08
+    digest: d1b10660815b736bae4c81872633f3e023d6e3d8a9e96fbff90bd4677d2276dc
     name: bazarr
     type: application
     urls:
@@ -14,20 +14,31 @@ entries:
   duckdns:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-03-15T21:46:18.694272384-07:00"
+    created: "2020-03-17T00:12:53.893278-07:00"
     description: Free service which will point DNS to an IP of your choice
-    digest: 137188ab32d1a8383fae52426d47ccae040f4f087bf659f71f8b5182c3565dfe
+    digest: 806d8c46cc6895da1a602c7bef6dccb113cf32f8ff7643cd53bee9f02904d244
     name: duckdns
     type: application
     urls:
     - https://pbar1.github.io/containers/duckdns-0.0.0.tgz
     version: 0.0.0
+  jackett:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2020-03-17T00:12:53.893741-07:00"
+    description: Single repository of maintained indexer scraping & translation logic
+    digest: d48041f58232a312c69f374a630ca4786ff75d55fb777bb56f413c12b5c15165
+    name: jackett
+    type: application
+    urls:
+    - https://pbar1.github.io/containers/jackett-0.0.0.tgz
+    version: 0.0.0
   plex:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-03-15T21:46:18.694627752-07:00"
+    created: "2020-03-17T00:12:53.894187-07:00"
     description: Streaming media server for movies, TV, and more
-    digest: d4730f6ff5087f34b99e453e3ad70ec108fdb5df948598c383254edf4460afe5
+    digest: 8eb78b4e02bf004b533e82c7f471c11f2a9c4085304bbc902b13a1aabbfe7be6
     name: plex
     type: application
     urls:
@@ -36,9 +47,9 @@ entries:
   radarr:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-03-15T21:46:18.694940269-07:00"
+    created: "2020-03-17T00:12:53.894651-07:00"
     description: A fork of Sonarr to work with movies
-    digest: 1e9a00b24da0c6190cc26760b419d2d324f75137532364c0acb5178d119847be
+    digest: c44690bd29dd9bf298e423bd6bc07c5f7264ee485970c337a1e12509a2294f24
     name: radarr
     type: application
     urls:
@@ -47,12 +58,12 @@ entries:
   sonarr:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-03-15T21:46:18.695229162-07:00"
+    created: "2020-03-17T00:12:53.895177-07:00"
     description: Smart PVR for newsgroup and bittorrent users
-    digest: 7c06a4ca53379646f18121a062dae25301e4d8514259b2d42950e0f3906e46b5
+    digest: ea91122a53bc82bc90c22c1bd4bbba8070ac7388db26ba346e3ad3d019a47e64
     name: sonarr
     type: application
     urls:
     - https://pbar1.github.io/containers/sonarr-0.0.0.tgz
     version: 0.0.0
-generated: "2020-03-15T21:46:18.693552184-07:00"
+generated: "2020-03-17T00:12:53.8911-07:00"

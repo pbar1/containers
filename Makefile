@@ -2,6 +2,7 @@ helm-package:
 	@helm package charts/sonarr  --destination=docs
 	@helm package charts/radarr  --destination=docs
 	@helm package charts/bazarr  --destination=docs
+	@helm package charts/jackett --destination=docs
 	@helm package charts/duckdns --destination=docs
 	@helm package charts/plex    --destination=docs
 
