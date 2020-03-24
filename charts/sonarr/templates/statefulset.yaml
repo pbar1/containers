@@ -46,7 +46,6 @@ spec:
               mountPath: /tv
             - name: downloads
               mountPath: /downloads
-              readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
