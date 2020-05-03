@@ -24,6 +24,7 @@ spec:
         paths:
         - /transmission
     transmission:
+      credentialsSecret: transmission-credentials
       tz: America/Los_Angeles
       config:
         hostPath: /data/docker/transmission

@@ -45,13 +45,10 @@ Current chart version is `0.0.0`
 | serviceAccount.name | string | `nil` |  |
 | tolerations | list | `[]` |  |
 | transmission.config.hostPath | string | `"/config/transmission"` |  |
+| transmission.credentialsSecret | string | `""` |  |
 | transmission.downloads.hostPath | string | `"/downloads"` |  |
-| transmission.pass | string | `"transmission"` |  |
 | transmission.pgid | int | `1000` |  |
 | transmission.port | int | `9091` |  |
-| transmission.proxyPort | int | `8388` |  |
 | transmission.puid | int | `1000` |  |
-| transmission.torrentPort | int | `51413` |  |
 | transmission.tz | string | `"Etc/UTC"` |  |
-| transmission.user | string | `"transmission"` |  |
 | transmission.webHome | string | `"/kettu/"` |  |

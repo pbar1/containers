@@ -63,11 +63,9 @@ affinity: {}
 
 transmission:
   webHome: /kettu/
-  user: transmission
-  pass: transmission
+  # name of a kubernetes secret containing keys "user" and "pass"
+  credentialsSecret: ""
   port: 9091
-  torrentPort: 51413
-  proxyPort: 8388
   puid: 1000
   pgid: 1000
   tz: Etc/UTC

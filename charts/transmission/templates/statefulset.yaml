@@ -39,6 +39,18 @@ spec:
               value: {{ .Values.transmission.pgid | quote }}
             - name: TZ
               value: {{ .Values.transmission.tz | quote }}
+            - name: TRANSMISSION_WEB_HOME
+              value: {{ .Values.transmission.webHome | quote }}
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.transmission.credentialsSecret }}
+                  key: user
+            - name: PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.transmission.credentialsSecret }}
+                  key: pass
           volumeMounts:
             - name: config
               mountPath: /config
