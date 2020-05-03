@@ -49,4 +49,5 @@ duckdns:
   pgid: 1000
   tz: Etc/UTC
   subdomains: subdomain1,subdomain2
-  token: token
+  # a kubernetes secret containing the key "token"
+  tokenSecret: ducksdns-token

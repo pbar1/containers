@@ -37,7 +37,10 @@ spec:
             - name: SUBDOMAINS
               value: {{ .Values.duckdns.subdomains | quote }}
             - name: TOKEN
-              value: {{ .Values.duckdns.token | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.duckdns.tokenSecret }}
+                  key: token
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

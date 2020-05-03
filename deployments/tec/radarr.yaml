@@ -27,8 +27,8 @@ spec:
       tz: America/Los_Angeles
       config:
         hostPath: /data/docker/radarr
-      tv:
-        hostPath: /data/tvshows
+      movies:
+        hostPath: /data/movies
       downloads:
         hostPath: /data/downloads
     resources:
@@ -36,5 +36,5 @@ spec:
         cpu: 100m
         memory: 256Mi
       limits:
-        cpu: 1000m
+        cpu: 1
         memory: 512Mi
