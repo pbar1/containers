@@ -1,6 +1,6 @@
 radarr
 ======
-A fork of Sonarr to work with movies à la Couchpotato
+A fork of Sonarr to work with movies
 
 Current chart version is `0.0.0`
 

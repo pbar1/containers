@@ -16,7 +16,7 @@ Current chart version is `0.0.0`
 | duckdns.pgid | int | `1000` |  |
 | duckdns.puid | int | `1000` |  |
 | duckdns.subdomains | string | `"subdomain1,subdomain2"` |  |
-| duckdns.token | string | `"token"` |  |
+| duckdns.tokenSecret | string | `"ducksdns-token"` |  |
 | duckdns.tz | string | `"Etc/UTC"` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |

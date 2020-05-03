@@ -1,6 +1,6 @@
 jackett
-======
-Smart PVR for newsgroup and bittorrent users
+=======
+Single repository of maintained indexer scraping & translation logic
 
 Current chart version is `0.0.0`
 
@@ -22,6 +22,11 @@ Current chart version is `0.0.0`
 | ingress.hosts[0].host | string | `"chart-example.local"` |  |
 | ingress.hosts[0].paths | list | `[]` |  |
 | ingress.tls | list | `[]` |  |
+| jackett.config.hostPath | string | `"/config/jackett"` |  |
+| jackett.pgid | int | `1000` |  |
+| jackett.port | int | `9117` |  |
+| jackett.puid | int | `1000` |  |
+| jackett.tz | string | `"Etc/UTC"` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
@@ -32,11 +37,4 @@ Current chart version is `0.0.0`
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |
-| jackett.config.hostPath | string | `"/config/jackett"` |  |
-| jackett.downloads.hostPath | string | `"/downloads"` |  |
-| jackett.pgid | int | `1000` |  |
-| jackett.port | int | `9117` |  |
-| jackett.puid | int | `1000` |  |
-| jackett.tv.hostPath | string | `"/tv"` |  |
-| jackett.tz | string | `"Etc/UTC"` |  |
 | tolerations | list | `[]` |  |

@@ -14,9 +14,9 @@ Current chart version is `0.0.0`
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | bazarr.config.hostPath | string | `"/config/bazarr"` |  |
-| bazarr.downloads.hostPath | string | `"/downloads"` |  |
+| bazarr.movies.hostPath | string | `"/movies"` |  |
 | bazarr.pgid | int | `1000` |  |
-| bazarr.port | int | `8989` |  |
+| bazarr.port | int | `6767` |  |
 | bazarr.puid | int | `1000` |  |
 | bazarr.tv.hostPath | string | `"/tv"` |  |
 | bazarr.tz | string | `"Etc/UTC"` |  |

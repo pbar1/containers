@@ -1,6 +1,6 @@
 plex
-======
-Smart PVR for newsgroup and bittorrent users
+====
+Streaming media server for movies, TV, and more
 
 Current chart version is `0.0.0`
 
@@ -14,6 +14,7 @@ Current chart version is `0.0.0`
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
+| hostNetwork | bool | `true` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"linuxserver/plex"` |  |
 | imagePullSecrets | list | `[]` |  |
@@ -24,6 +25,13 @@ Current chart version is `0.0.0`
 | ingress.tls | list | `[]` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
+| plex.config.hostPath | string | `"/config/plex"` |  |
+| plex.movies.hostPath | string | `"/movies"` |  |
+| plex.pgid | int | `1000` |  |
+| plex.puid | int | `1000` |  |
+| plex.tv.hostPath | string | `"/tv"` |  |
+| plex.tz | string | `"Etc/UTC"` |  |
+| plex.version | string | `"docker"` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
@@ -32,11 +40,4 @@ Current chart version is `0.0.0`
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |
-| plex.config.hostPath | string | `"/config/plex"` |  |
-| plex.downloads.hostPath | string | `"/downloads"` |  |
-| plex.pgid | int | `1000` |  |
-| plex.port | int | `8989` |  |
-| plex.puid | int | `1000` |  |
-| plex.tv.hostPath | string | `"/tv"` |  |
-| plex.tz | string | `"Etc/UTC"` |  |
 | tolerations | list | `[]` |  |
