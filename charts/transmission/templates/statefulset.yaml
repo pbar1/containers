@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "transmission.fullname" . }}
+  labels:
+    {{- include "transmission.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "transmission.fullname" . }}
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "transmission.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "transmission.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "transmission.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.transmission.port }}
+              protocol: TCP
+          env:
+            - name: PUID
+              value: {{ .Values.transmission.puid | quote }}
+            - name: PGID
+              value: {{ .Values.transmission.pgid | quote }}
+            - name: TZ
+              value: {{ .Values.transmission.tz | quote }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: downloads
+              mountPath: /downloads
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: private-internet-access
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          image: "{{ .Values.privateInternetAccess.image.name }}:{{ .Values.privateInternetAccess.image.tag }}"
+          imagePullPolicy: {{ .Values.privateInternetAccess.image.pullPolicy }}
+          ports:
+            - name: socks-tcp
+              containerPort: {{ .Values.privateInternetAccess.shadowSocksPort }}
+              protocol: TCP
+            - name: socks-udp
+              containerPort: {{ .Values.privateInternetAccess.shadowSocksPort }}
+              protocol: UDP
+          env:
+            - name: REGION
+              value: {{ .Values.privateInternetAccess.region | quote }}
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.privateInternetAccess.credentialsSecret }}
+                  key: user
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.privateInternetAccess.credentialsSecret }}
+                  key: password
+            - name: EXTRA_SUBNETS
+              value: {{ .Values.privateInternetAccess.extraSubnets | quote }}
+            - name: TINYPROXY
+              value: {{ .Values.privateInternetAccess.tinyProxy | quote }}
+            - name: SHADOWSOCKS
+              value: {{ .Values.privateInternetAccess.shadowSocks | quote }}
+            - name: SHADOWSOCKS_PASSWORD
+              value: {{ .Values.privateInternetAccess.shadowSocksPassword | quote}}
+            - name: TZ
+              value: {{ .Values.privateInternetAccess.tz | quote }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+        - name: config
+          hostPath:
+            path: {{ .Values.transmission.config.hostPath }}
+        - name: downloads
+          hostPath:
+            path: {{ .Values.transmission.downloads.hostPath }}
