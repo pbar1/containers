@@ -22,6 +22,9 @@ spec:
       subdomains: rogueport
       tokenSecret: duckdns-credentials
     resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
       limits:
         cpu: 100m
         memory: 128Mi

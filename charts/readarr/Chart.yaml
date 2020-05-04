@@ -1,0 +1,6 @@
+apiVersion: v2
+name: readarr
+description: Book, Magazine, Comics Ebook and Audiobook Manager and Automation
+type: application
+version: 0.0.0
+appVersion: unstable
