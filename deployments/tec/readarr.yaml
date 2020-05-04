@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: readarr
+spec: {}
+
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: readarr
+  namespace: kube-system
+spec:
+  repo: https://pbar1.github.io/containers
+  chart: readarr
+  version: 0.0.0
+  targetNamespace: readarr
+  valuesContent: |-
+    ingress:
+      enabled: true
+      hosts:
+      - host: ubuntu.lan
+        paths:
+        - /readarr
+    readarr:
+      tz: America/Los_Angeles
+      configHostPath: /data/docker/readarr
+      downloadsHostPath: /data/downloads
+      booksHostPath: /data/books
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 1
+        memory: 512Mi
