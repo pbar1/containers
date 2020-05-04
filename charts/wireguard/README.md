@@ -24,7 +24,6 @@ Current chart version is `0.0.0`
 | resources | object | `{}` |  |
 | securityContext.capabilities.add[0] | string | `"NET_ADMIN"` |  |
 | securityContext.capabilities.add[1] | string | `"SYS_MODULE"` |  |
-| service.port | int | `51820` |  |
 | service.type | string | `"NodePort"` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |

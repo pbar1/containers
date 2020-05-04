@@ -61,7 +61,6 @@ securityContext:
 
 service:
   type: NodePort
-  port: 51820
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
