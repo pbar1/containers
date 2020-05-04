@@ -1,0 +1,82 @@
+# https://hub.docker.com/r/linuxserver/wireguard
+
+wireguard:
+  # wireguard port
+  port: 51820
+  # for UserID
+  puid: 1000
+  # for GroupID
+  pgid: 1000
+  # specify a timezone to use
+  tz: Etc/UTC
+  # External IP or domain name for docker host. Used in server mode. If set to auto, the container will try to determine and set the external IP automatically
+  serverUrl: auto
+  # External port for docker host. Used in server mode.
+  serverPort: 51820
+  # Number of peers to create confs for. Required for server mode.
+  peers: 1
+  # DNS server set in peer/client configs (can be set as 8.8.8.8). Used in server mode. Defaults to auto, which uses wireguard docker host's DNS via included CoreDNS forward.
+  peerDns: auto
+  # Internal subnet for the wireguard and server and peers (only change if it clashes). Used in server mode.
+  internalSubnet: 10.13.13.0
+  # Contains all relevant configuration files.
+  configHostPath: /config/wireguard
+  # Maps host's modules folder.
+  modulesHostPath: /lib/modules
+
+replicaCount: 1
+
+image:
+  repository: linuxserver/wireguard
+  pullPolicy: Always
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  capabilities:
+    add:
+      - NET_ADMIN
+      - SYS_MODULE
+  #   drop:
+  #   - ALL
+  # Required for client mode.
+  # sysctls:
+  #   - name: "net.ipv4.conf.all.src_valid_mark"
+  #     value: 1
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: NodePort
+  port: 51820
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

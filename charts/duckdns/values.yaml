@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: linuxserver/duckdns
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 imagePullSecrets: []
 nameOverride: ""

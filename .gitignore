@@ -1,2 +1,3 @@
 **/.idea/*
 temp-transmission.yaml
+deployments/tec/wireguard.yaml

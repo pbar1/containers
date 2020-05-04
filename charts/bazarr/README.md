@@ -21,7 +21,7 @@ Current chart version is `0.0.0`
 | bazarr.tv.hostPath | string | `"/tv"` |  |
 | bazarr.tz | string | `"Etc/UTC"` |  |
 | fullnameOverride | string | `""` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.pullPolicy | string | `"Always"` |  |
 | image.repository | string | `"linuxserver/bazarr"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |

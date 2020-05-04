@@ -27,5 +27,5 @@ spec:
         hostPath: /data/tvshows
     resources:
       limits:
-        cpu: 2000m
+        cpu: 2
         memory: 2Gi

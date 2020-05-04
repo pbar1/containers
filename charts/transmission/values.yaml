@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: linuxserver/transmission
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 imagePullSecrets: []
 nameOverride: ""
@@ -78,7 +78,7 @@ privateInternetAccess:
   image:
     name: qmcgaw/private-internet-access
     tag: v2
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   tz: Etc/UTC
   region: Switzerland
   # name of a kubernetes secret containing keys "user" and "password"

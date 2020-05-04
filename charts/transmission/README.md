@@ -14,7 +14,7 @@ Current chart version is `0.0.0`
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.pullPolicy | string | `"Always"` |  |
 | image.repository | string | `"linuxserver/transmission"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
@@ -28,7 +28,7 @@ Current chart version is `0.0.0`
 | privateInternetAccess.credentialsSecret | string | `""` |  |
 | privateInternetAccess.extraSubnets | string | `"0.0.0.0/32"` |  |
 | privateInternetAccess.image.name | string | `"qmcgaw/private-internet-access"` |  |
-| privateInternetAccess.image.pullPolicy | string | `"IfNotPresent"` |  |
+| privateInternetAccess.image.pullPolicy | string | `"Always"` |  |
 | privateInternetAccess.image.tag | string | `"v2"` |  |
 | privateInternetAccess.region | string | `"Switzerland"` |  |
 | privateInternetAccess.shadowSocks | string | `"on"` |  |

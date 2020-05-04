@@ -19,7 +19,7 @@ Current chart version is `0.0.0`
 | duckdns.tokenSecret | string | `"ducksdns-token"` |  |
 | duckdns.tz | string | `"Etc/UTC"` |  |
 | fullnameOverride | string | `""` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.pullPolicy | string | `"Always"` |  |
 | image.repository | string | `"linuxserver/duckdns"` |  |
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |

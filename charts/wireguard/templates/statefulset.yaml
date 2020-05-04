@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "wireguard.fullname" . }}
+  labels:
+    {{- include "wireguard.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "wireguard.fullname" . }}
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "wireguard.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "wireguard.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "wireguard.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: wireguard
+              containerPort: {{ .Values.wireguard.port }}
+              protocol: UDP
+          env:
+            - name: PUID
+              value: {{ .Values.wireguard.puid | quote }}
+            - name: PGID
+              value: {{ .Values.wireguard.pgid | quote }}
+            - name: TZ
+              value: {{ .Values.wireguard.tz | quote }}
+            - name: SERVERURL
+              value: {{ .Values.wireguard.serverUrl | quote }}
+            - name: SERVERPORT
+              value: {{ .Values.wireguard.serverPort | quote }}
+            - name: PEERS
+              value: {{ .Values.wireguard.peers | quote }}
+            - name: PEERDNS
+              value: {{ .Values.wireguard.peerDns | quote }}
+            - name: INTERNAL_SUBNET
+              value: {{ .Values.wireguard.internalSubnet | quote }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: modules
+              mountPath: /lib/modules
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+        - name: config
+          hostPath:
+            path: {{ .Values.wireguard.configHostPath }}
+        - name: modules
+          hostPath:
+            path: {{ .Values.wireguard.modulesHostPath }}
