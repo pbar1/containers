@@ -44,30 +44,31 @@ local HostNetwork = {
   } } } },
 };
 
-
-local AddPiaContainer(name, image, env=[], resources={}) = {
+// TODO: parameterize this
+local AddPiaContainer = {
   statefulset: super.statefulset + { spec+: { template+: { spec+: {
-    containers_+: {
-      name: kube.Container(name) {
-        image: image,
+    containers: super.containers + [{
+      pia: kube.Container('pia') {
+        image: 'qmcgaw/private-internet-access:v2',
         imagePullPolicy: 'Always',
         securityContext: { capabilities: { add: ['NET_ADMIN'] } },
-        resources: { requests: { cpu: '100m', memory: '256Mi' } } + resources,
+        resources: { requests: { cpu: '100m', memory: '256Mi' } },
         env_+: {
           TZ: 'America/Los_Angeles',
           TINYPROXY: 'off',
           SHADOWSOCKS: 'on',
           SHADOWSOCKS_PASSWORD: 'shadowsocks',
-        } + {
-          [e.name]: e.value
-          for e in env
+          REGION: 'Switzerland',
+          USER: 'TODO',
+          PASSWORD: 'TODO',
+          EXTRA_SUBNETS: '192.168.1.0/24',
         },
         ports_+: {
-          'socks-tcp': { containerPort: 8388, protocol: 'TCP' },
-          'socks-udp': { containerPort: 8388, protocol: 'UDP' },
+          sockstcp: { containerPort: 8388, protocol: 'TCP' },
+          socksudp: { containerPort: 8388, protocol: 'UDP' },
         },
       },
-    },
+    }],
   } } } },
 };
 
@@ -113,10 +114,5 @@ local AddPiaContainer(name, image, env=[], resources={}) = {
     { name: 'TRANSMISSION_WEB_HOME', value: '/kettu/' },
     { name: 'USER', value: 'TODO' },
     { name: 'PASS', value: 'TODO' },
-  ]) + AddPiaContainer('private-internet-access', 'qmcgaw/private-internet-access:v2', [
-    { name: 'REGION', value: 'Switzerland' },
-    { name: 'USER', value: 'TODO' },
-    { name: 'PASSWORD', value: 'TODO' },
-    { name: 'EXTRA_SUBNETS', value: '192.168.1.0/24' },
-  ]),
+  ]) + AddPiaContainer,
 }
