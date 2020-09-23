@@ -1,14 +1,10 @@
-transmission
-============
+# transmission
+
+![Version: 0.0.0](https://img.shields.io/badge/Version-0.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+
 A fast, easy, and free BitTorrent client
 
-Current chart version is `0.0.0`
-
-
-
-
-
-## Chart Values
+## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

@@ -1,88 +1,44 @@
 apiVersion: v1
 entries:
-  bazarr:
-  - apiVersion: v2
-    appVersion: latest
-    created: "2020-05-03T22:25:03.863016-07:00"
-    description: Manages and downloads subtitles based on your requirements
-    digest: 4c51b1f7ea041845ae25a9a146be6bad099a1e1e8ceeafab9f56314aaf86975c
-    name: bazarr
-    type: application
-    urls:
-    - https://pbar1.github.io/containers/bazarr-0.0.0.tgz
-    version: 0.0.0
   duckdns:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-05-03T22:25:03.863355-07:00"
+    created: "2020-09-23T00:05:17.329229-07:00"
     description: Free service which will point DNS to an IP of your choice
-    digest: 622bb859caabea47c51f2ed8f266be73e452185798ded2a1765a554e3108bb00
+    digest: 8e8002e7c2c92527fe6923377d4d8872b3ebd57ce575bbbe6d033b17243a6646
     name: duckdns
     type: application
     urls:
     - https://pbar1.github.io/containers/duckdns-0.0.0.tgz
     version: 0.0.0
-  jackett:
+  lsio-common:
   - apiVersion: v2
-    appVersion: latest
-    created: "2020-05-03T22:25:03.863754-07:00"
-    description: Single repository of maintained indexer scraping & translation logic
-    digest: 67ffc8b8d86e020c0af5a879465203f69b8f9cdcfa3a1cde3513c56246f9a934
-    name: jackett
+    appVersion: preview
+    created: "2020-09-23T00:05:17.329726-07:00"
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: b5b568e74495246a38f024dedb1ccecf56aee75f6a2342c1da5001c893dd654e
+    name: lsio-common
     type: application
     urls:
-    - https://pbar1.github.io/containers/jackett-0.0.0.tgz
+    - https://pbar1.github.io/containers/lsio-common-0.0.0.tgz
     version: 0.0.0
   plex:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-05-03T22:25:03.864166-07:00"
+    created: "2020-09-23T00:05:17.330206-07:00"
     description: Streaming media server for movies, TV, and more
-    digest: 89899f71dc810ea9a55b5211e6cf69bdc64dd88db60d03b21ae4f068ff6a0b72
+    digest: e126c0a73f544247839e85bc376e4e107f939742866343d573ce512222a28ae1
     name: plex
     type: application
     urls:
     - https://pbar1.github.io/containers/plex-0.0.0.tgz
     version: 0.0.0
-  radarr:
-  - apiVersion: v2
-    appVersion: preview
-    created: "2020-05-03T22:25:03.864557-07:00"
-    description: A fork of Sonarr to work with movies
-    digest: b4e52726d47ddfda535ffee2c4b6f9f3cac954b027ee3919761c4cceed22dd81
-    name: radarr
-    type: application
-    urls:
-    - https://pbar1.github.io/containers/radarr-0.0.0.tgz
-    version: 0.0.0
-  readarr:
-  - apiVersion: v2
-    appVersion: unstable
-    created: "2020-05-03T22:25:03.865018-07:00"
-    description: Book, Magazine, Comics Ebook and Audiobook Manager and Automation
-    digest: 886aaa97e1561e60afc955b4c5b92e43dcd5a6ed6170d8edbf2a0300d12744c8
-    name: readarr
-    type: application
-    urls:
-    - https://pbar1.github.io/containers/readarr-0.0.0.tgz
-    version: 0.0.0
-  sonarr:
-  - apiVersion: v2
-    appVersion: preview
-    created: "2020-05-03T22:25:03.865442-07:00"
-    description: Smart PVR for newsgroup and bittorrent users
-    digest: c1f4ecdf64604f1566e7504d7049d39cf228b5d3da16fcb6663e49063ef448cb
-    name: sonarr
-    type: application
-    urls:
-    - https://pbar1.github.io/containers/sonarr-0.0.0.tgz
-    version: 0.0.0
   transmission:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-05-03T22:25:03.86593-07:00"
+    created: "2020-09-23T00:05:17.331523-07:00"
     description: A fast, easy, and free BitTorrent client
-    digest: a52b845091651b75460ee22980e911144139b582ef41f36552d8a101e28c87cd
+    digest: 03ed280995efb426041b4dcd895f4024ad8555e6e9a7afaa0beb4cb9e9d26860
     name: transmission
     type: application
     urls:
@@ -91,12 +47,12 @@ entries:
   wireguard:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-05-03T22:25:03.866348-07:00"
+    created: "2020-09-23T00:05:17.332031-07:00"
     description: Simple yet fast and modern VPN that utilizes state-of-the-art cryptography.
-    digest: 2f7490a7ce68c4adf7de85be8e83338e85d2d1a2b760b186f4c6025b8771f7fd
+    digest: 06dab42073c9689192cd8a35e74f2d2dc83406577f63a31890a284ff3a4731e3
     name: wireguard
     type: application
     urls:
     - https://pbar1.github.io/containers/wireguard-0.0.0.tgz
     version: 0.0.0
-generated: "2020-05-03T22:25:03.861955-07:00"
+generated: "2020-09-23T00:05:17.328698-07:00"

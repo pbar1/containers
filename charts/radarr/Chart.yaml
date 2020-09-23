@@ -1,6 +1,0 @@
-apiVersion: v2
-name: radarr
-description: A fork of Sonarr to work with movies
-type: application
-version: 0.0.0
-appVersion: preview

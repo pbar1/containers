@@ -1,6 +1,0 @@
-apiVersion: v2
-name: bazarr
-description: Manages and downloads subtitles based on your requirements
-type: application
-version: 0.0.0
-appVersion: latest

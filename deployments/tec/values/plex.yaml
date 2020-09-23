@@ -1,0 +1,12 @@
+plex:
+  tz: America/Los_Angeles
+  config:
+    hostPath: /data/config/plex
+  movies:
+    hostPath: /data/movies
+  tv:
+    hostPath: /data/tvshows
+resources:
+  limits:
+    cpu: 2
+    memory: 2Gi

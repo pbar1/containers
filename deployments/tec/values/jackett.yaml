@@ -1,0 +1,13 @@
+image:
+  repository: linuxserver/jackett
+service:
+  containerPort: 9117
+hostPaths:
+  config: "/data/docker/jackett:/config"
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 1
+    memory: 512Mi

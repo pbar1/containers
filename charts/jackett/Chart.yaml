@@ -1,6 +1,0 @@
-apiVersion: v2
-name: jackett
-description: Single repository of maintained indexer scraping & translation logic
-type: application
-version: 0.0.0
-appVersion: latest

@@ -1,3 +1,4 @@
 **/.idea/*
 temp-transmission.yaml
-deployments/tec/wireguard.yaml
+deployments/tec/values/wireguard.yaml
+**/picl-k3os-image-generator/*

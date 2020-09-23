@@ -1,0 +1,16 @@
+image:
+  repository: hotio/readarr
+  tag: unstable
+service:
+  containerPort: 8787
+hostPaths:
+  config: "/data/docker/readarr:/config"
+  downloads: "/data/downloads:/downloads"
+  books: "/data/paperbooks:/books"
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 1
+    memory: 512Mi

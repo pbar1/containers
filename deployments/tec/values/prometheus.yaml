@@ -1,0 +1,41 @@
+# --- chart: stable/prometheus
+# --- version: 11.1.6
+
+podSecurityPolicy:
+  enabled: false
+alertmanager:
+  enabled: false
+configmapReload:
+  prometheus:
+    enabled: false
+  alertmanager:
+    enabled: false
+# more options at https://github.com/helm/charts/tree/master/stable/kube-state-metrics
+kubeStateMetrics:
+  enabled: true
+  image:
+    repository: carlosedp/kube-state-metrics
+nodeExporter:
+  enabled: false
+server:
+  enabled: true
+  baseUrl: /prometheus
+  ingress:
+    enabled: true
+    hosts:
+      - mac-mini.lan
+  persistentVolume:
+    enabled: false
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 1
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  retention: "5d"
+pushgateway:
+  enabled: false
+networkPolicy:
+  enabled: true

@@ -1,0 +1,15 @@
+image:
+  repository: linuxserver/sonarr
+service:
+  containerPort: 8989
+hostPaths:
+  config: "/data/docker/sonarr:/config"
+  downloads: "/data/downloads:/downloads"
+  tv: "/data/tvshows:/tv"
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 1
+    memory: 512Mi

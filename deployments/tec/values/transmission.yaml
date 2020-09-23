@@ -1,0 +1,24 @@
+ingress:
+  enabled: true
+  hosts:
+  - host: mac-mini.lan
+    paths:
+    - /transmission
+transmission:
+  credentialsSecret: transmission-credentials
+  tz: America/Los_Angeles
+  config:
+    hostPath: /data/docker/transmission
+  downloads:
+    hostPath: /data/downloads
+privateInternetAccess:
+  credentialsSecret: private-internet-access-credentials
+  extraSubnets: 192.168.1.0/24
+  tz: America/Los_Angeles
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 1
+    memory: 512Mi

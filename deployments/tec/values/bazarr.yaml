@@ -1,0 +1,15 @@
+image:
+  repository: linuxserver/bazarr
+service:
+  containerPort: 6767
+hostPaths:
+  config: "/data/docker/bazarr:/config"
+  movies: "/data/movies:/movies"
+  tv: "/data/tvshows:/tv"
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 1
+    memory: 512Mi
