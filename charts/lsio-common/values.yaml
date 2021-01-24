@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: linuxserver/lsio-common
+  repository: ghcr.io/linuxserver/nginx
   tag: latest
   pullPolicy: Always
 
@@ -68,8 +68,13 @@ affinity: {}
 
 environment: {}
 
+environmentFromSecret: {}
+  # SUPER_SECRET_VAR:
+  #   name: my-secret
+  #   key: my-key
+
 hostPaths: {}
-  # config: "/config/lsio-common:/data/docker/lsio-common"
+  # config: "/data/docker/lsio-common:/config/lsio-common"
 
 lsioCommon:
   puid: 1000

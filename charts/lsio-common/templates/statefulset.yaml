@@ -23,7 +23,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ include "lsio-common.name" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -43,6 +43,13 @@ spec:
           - name: {{ $key }}
             value: {{ $value | quote }}
         {{- end }}
+        {{- range $key, $value := .Values.environmentFromSecret }}
+          - name: {{ $key }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ $value.name }}
+                key: {{ $value.key }}
+          {{- end }}
         {{- if .Values.hostPaths }}
           volumeMounts:
         {{- range $key, $value := .Values.hostPaths }}
