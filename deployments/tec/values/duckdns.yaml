@@ -1,7 +1,11 @@
+image:
+  tag: version-e60b35ff
+
 duckdns:
   tz: America/Los_Angeles
   subdomains: rogueport
   tokenSecret: duckdns-credentials
+
 resources:
   requests:
     cpu: 100m

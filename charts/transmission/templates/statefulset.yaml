@@ -26,7 +26,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -58,43 +58,32 @@ spec:
               mountPath: /downloads
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-        - name: private-internet-access
+        - name: gluetun
           securityContext:
             capabilities:
               add:
                 - NET_ADMIN
-          image: "{{ .Values.privateInternetAccess.image.name }}:{{ .Values.privateInternetAccess.image.tag }}"
-          imagePullPolicy: {{ .Values.privateInternetAccess.image.pullPolicy }}
-          ports:
-            - name: socks-tcp
-              containerPort: {{ .Values.privateInternetAccess.shadowSocksPort }}
-              protocol: TCP
-            - name: socks-udp
-              containerPort: {{ .Values.privateInternetAccess.shadowSocksPort }}
-              protocol: UDP
+          image: "{{ .Values.gluetun.image.name }}:{{ .Values.gluetun.image.tag }}"
+          imagePullPolicy: {{ .Values.gluetun.image.pullPolicy }}
           env:
+            - name: VPNSP
+              value: {{ .Values.gluetun.vpnProvider | quote }}
             - name: REGION
-              value: {{ .Values.privateInternetAccess.region | quote }}
-            - name: USER
+              value: {{ .Values.gluetun.region | quote }}
+            - name: OPENVPN_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.privateInternetAccess.credentialsSecret }}
-                  key: user
-            - name: PASSWORD
+                  name: {{ .Values.gluetun.credsSecret.name }}
+                  key: {{ .Values.gluetun.credsSecret.userKey }}
+            - name: OPENVPN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.privateInternetAccess.credentialsSecret }}
-                  key: password
-            - name: EXTRA_SUBNETS
-              value: {{ .Values.privateInternetAccess.extraSubnets | quote }}
-            - name: TINYPROXY
-              value: {{ .Values.privateInternetAccess.tinyProxy | quote }}
-            - name: SHADOWSOCKS
-              value: {{ .Values.privateInternetAccess.shadowSocks | quote }}
-            - name: SHADOWSOCKS_PASSWORD
-              value: {{ .Values.privateInternetAccess.shadowSocksPassword | quote}}
+                  name: {{ .Values.gluetun.credsSecret.name }}
+                  key: {{ .Values.gluetun.credsSecret.passwordKey }}
             - name: TZ
-              value: {{ .Values.privateInternetAccess.tz | quote }}
+              value: {{ .Values.gluetun.tz | quote }}
+            - name: OPENVPN_ROOT
+              value: "yes"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

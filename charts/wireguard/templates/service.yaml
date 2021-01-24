@@ -9,7 +9,6 @@ spec:
   ports:
     - name: wireguard
       port: {{ .Values.wireguard.port}}
-      nodePort: {{ .Values.wireguard.serverPort }}
       targetPort: wireguard
       protocol: UDP
   selector:

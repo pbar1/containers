@@ -27,7 +27,7 @@ wireguard:
 replicaCount: 1
 
 image:
-  repository: linuxserver/wireguard
+  repository: ghcr.io/linuxserver/wireguard
   pullPolicy: Always
 
 imagePullSecrets: []

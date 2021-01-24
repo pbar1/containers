@@ -1,7 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: linuxserver/duckdns
+  repository: ghcr.io/linuxserver/duckdns
+  tag: latest
   pullPolicy: Always
 
 imagePullSecrets: []

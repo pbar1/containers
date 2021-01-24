@@ -1,8 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: linuxserver/transmission
-  pullPolicy: Always
+  repository: ghcr.io/linuxserver/transmission
+  tag: latest
+  pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 nameOverride: ""
@@ -29,6 +30,7 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+  # nodePort: 30000
 
 ingress:
   enabled: false
@@ -74,17 +76,15 @@ transmission:
   downloads:
     hostPath: /downloads
 
-privateInternetAccess:
+gluetun:
   image:
-    name: qmcgaw/private-internet-access
-    tag: v2
-    pullPolicy: Always
+    name: qmcgaw/gluetun
+    tag: latest
+    pullPolicy: IfNotPresent
   tz: Etc/UTC
+  vpnProvider: "private internet access"
   region: Switzerland
-  # name of a kubernetes secret containing keys "user" and "password"
-  credentialsSecret: ""
-  extraSubnets: "0.0.0.0/32"
-  tinyProxy: "off"
-  shadowSocks: "on"
-  shadowSocksPassword: shadowsocks
-  shadowSocksPort: 8388
+  credsSecret:
+    name: pia-creds
+    userKey: user
+    passwordKey: password
