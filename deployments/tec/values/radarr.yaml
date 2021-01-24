@@ -1,11 +1,18 @@
+nameOverride: radarr
+
 image:
-  repository: linuxserver/radarr
+  repository: ghcr.io/linuxserver/radarr
+  tag: version-3.0.1.4259
+
 service:
   containerPort: 7878
+  nodePort: 30004
+
 hostPaths:
   config: "/data/docker/radarr:/config"
   downloads: "/data/downloads:/downloads"
   tv: "/data/movies:/movies"
+
 resources:
   requests:
     cpu: 100m

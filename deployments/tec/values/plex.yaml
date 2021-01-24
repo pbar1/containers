@@ -1,11 +1,15 @@
+image:
+  tag: version-1.21.1.3876-3c3adfcb4
+
 plex:
   tz: America/Los_Angeles
   config:
-    hostPath: /data/config/plex
+    hostPath: /data/docker/plex
   movies:
     hostPath: /data/movies
   tv:
     hostPath: /data/tvshows
+
 resources:
   limits:
     cpu: 2

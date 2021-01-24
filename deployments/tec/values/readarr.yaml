@@ -3,6 +3,7 @@ image:
   tag: unstable
 service:
   containerPort: 8787
+  nodePort: 30005
 hostPaths:
   config: "/data/docker/readarr:/config"
   downloads: "/data/downloads:/downloads"

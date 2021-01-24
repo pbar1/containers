@@ -23,9 +23,13 @@ resources: {}
 persistentVolumeClaim:
   enabled: false
 
-nodeSelector: {}
+nodeSelector:
+  kubernetes.io/hostname: vivian
 
-tolerations: []
+tolerations:
+- key: "node-role.kubernetes.io/master"
+  operator: "Exists"
+  effect: "NoSchedule"
 
 admin:
   existingSecret: "pihole-admin-password"

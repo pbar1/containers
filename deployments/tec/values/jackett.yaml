@@ -1,9 +1,16 @@
+nameOverride: jackett
+
 image:
-  repository: linuxserver/jackett
+  repository: ghcr.io/linuxserver/jackett
+  tag: version-v0.17.284
+
 service:
   containerPort: 9117
+  nodePort: 30001
+
 hostPaths:
   config: "/data/docker/jackett:/config"
+
 resources:
   requests:
     cpu: 100m
