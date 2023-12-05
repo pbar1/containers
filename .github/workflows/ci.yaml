@@ -25,7 +25,16 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build and push
+    - name: Build and push (arr-base)
+      uses: docker/build-push-action@v5
+      with:
+        file: arr-base.Dockerfile
+        context: .
+        platforms: linux/amd64,linux/arm64
+        push: true
+        tags: ghcr.io/pbar1/arr-base:latest
+
+    - name: Build and push (lidarr)
       uses: docker/build-push-action@v5
       with:
         file: lidarr.Dockerfile
@@ -34,7 +43,7 @@ jobs:
         push: true
         tags: ghcr.io/pbar1/lidarr:latest
 
-    - name: Build and push
+    - name: Build and push (prowlarr)
       uses: docker/build-push-action@v5
       with:
         file: prowlarr.Dockerfile
@@ -43,7 +52,7 @@ jobs:
         push: true
         tags: ghcr.io/pbar1/prowlarr:latest
 
-    - name: Build and push
+    - name: Build and push (radarr)
       uses: docker/build-push-action@v5
       with:
         file: radarr.Dockerfile
@@ -52,7 +61,7 @@ jobs:
         push: true
         tags: ghcr.io/pbar1/radarr:latest
 
-    - name: Build and push
+    - name: Build and push (readarr)
       uses: docker/build-push-action@v5
       with:
         file: readarr.Dockerfile
@@ -61,7 +70,7 @@ jobs:
         push: true
         tags: ghcr.io/pbar1/readarr:latest
 
-    - name: Build and push
+    - name: Build and push (sonarr)
       uses: docker/build-push-action@v5
       with:
         context: .
