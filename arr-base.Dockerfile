@@ -1,3 +1,4 @@
+LABEL org.opencontainers.image.source https://github.com/pbar1/containers
 FROM alpine:latest
 
 RUN apk add --no-cache tzdata icu-libs sqlite-libs

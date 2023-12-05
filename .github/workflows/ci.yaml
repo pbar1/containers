@@ -28,6 +28,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
+        file: lidarr.Dockerfile
         context: .
         platforms: linux/amd64,linux/arm64
         push: true
@@ -36,6 +37,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
+        file: prowlarr.Dockerfile
         context: .
         platforms: linux/amd64,linux/arm64
         push: true
@@ -44,6 +46,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
+        file: radarr.Dockerfile
         context: .
         platforms: linux/amd64,linux/arm64
         push: true
@@ -52,6 +55,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
+        file: readarr.Dockerfile
         context: .
         platforms: linux/amd64,linux/arm64
         push: true
@@ -61,6 +65,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
+        file: sonarr.Dockerfile
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ghcr.io/pbar1/sonarr:latest

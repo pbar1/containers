@@ -6,6 +6,7 @@
 # https://github.com/hotio/radarr/blob/nightly/linux-amd64.Dockerfile
 def gen_dockerfile_base() -> str:
     return f"""
+LABEL org.opencontainers.image.source https://github.com/pbar1/containers
 FROM alpine:latest
 
 RUN apk add --no-cache tzdata icu-libs sqlite-libs
