@@ -5,3 +5,5 @@ COPY --from=app --chown=user:users /app/bin /app
 
 ENTRYPOINT ["/app/Lidarr"]
 CMD ["-nobrowser", "-data=/config"]
+
+LABEL org.opencontainers.image.source https://github.com/pbar1/containers

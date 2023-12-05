@@ -6,13 +6,14 @@
 # https://github.com/hotio/radarr/blob/nightly/linux-amd64.Dockerfile
 def gen_dockerfile_base() -> str:
     return f"""
-LABEL org.opencontainers.image.source https://github.com/pbar1/containers
 FROM alpine:latest
 
 RUN apk add --no-cache tzdata icu-libs sqlite-libs
 
 RUN adduser -D -s /sbin/nologin -G users -u 1000 user && mkdir /config && chown -R user:users /config
 USER user
+
+LABEL org.opencontainers.image.source https://github.com/pbar1/containers
 """.strip()
 
 
@@ -25,6 +26,8 @@ COPY --from=app --chown=user:users /app/bin /app
 
 ENTRYPOINT ["/app/{app.capitalize()}"]
 CMD ["-nobrowser", "-data=/config"]
+
+LABEL org.opencontainers.image.source https://github.com/pbar1/containers
 """.strip()
 
 
