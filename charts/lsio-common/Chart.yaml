@@ -1,6 +1,0 @@
-apiVersion: v2
-name: lsio-common
-description: Smart PVR for newsgroup and bittorrent users
-type: application
-version: 0.0.0
-appVersion: preview

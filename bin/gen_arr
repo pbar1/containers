@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+
+# Taken from here
+# https://github.com/hotio/base/blob/alpine/linux-amd64.Dockerfile
+# https://github.com/hotio/radarr/blob/nightly/linux-amd64.Dockerfile
+def gen_dockerfile_base() -> str:
+    return f"""
+FROM alpine:latest
+
+RUN apk add --no-cache tzdata icu-libs sqlite-libs
+
+RUN adduser -D -s /sbin/nologin -G users -u 1000 user && mkdir /config && chown -R user:users /config
+USER user
+""".strip()
+
+
+def gen_dockerfile(app: str, tag: str) -> str:
+    return f"""
+FROM ghcr.io/hotio/{app}:{tag} AS app
+FROM ghcr.io/pbar1/arr-base:latest
+
+COPY --from=app --chown=user:users /app/bin /app
+
+ENTRYPOINT ["/app/{app.capitalize()}"]
+CMD ["-nobrowser", "-data=/config"]
+""".strip()
+
+
+def main():
+    # Generate the shared base image
+    with open(f"arr-base.Dockerfile", "w+") as f:
+        f.write(gen_dockerfile_base())
+
+    # Generate the individual apps
+    apps = {
+        "lidarr": "nightly",
+        "prowlarr": "nightly",
+        "radarr": "nightly",
+        "readarr": "nightly",
+        "sonarr": "nightly",
+    }
+    for app, tag in apps.items():
+        dockerfile = f"{app}.Dockerfile"
+        with open(dockerfile, "w+") as f:
+            f.write(gen_dockerfile(app, tag))
+
+
+if __name__ == "__main__":
+    main()

@@ -1,6 +1,0 @@
-apiVersion: v2
-name: wireguard
-description: Simple yet fast and modern VPN that utilizes state-of-the-art cryptography.
-type: application
-version: 0.0.0
-appVersion: latest
