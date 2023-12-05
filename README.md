@@ -8,3 +8,5 @@ guidelines.
 - $GROUP = users
 - $UID = 1000
 - $GID = 100
+
+New images are built via GitHub Actions daily at 08:00 UTC.
