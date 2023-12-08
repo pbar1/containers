@@ -411,5 +411,5 @@
   (fetchNuGet { pname = "System.Xml.XDocument"; version = "4.0.11"; sha256 = "0n4lvpqzy9kc7qy1a4acwwd7b7pnvygv895az5640idl2y9zbz18"; })
   (fetchNuGet { pname = "System.Xml.XDocument"; version = "4.3.0"; sha256 = "08h8fm4l77n0nd4i4fk2386y809bfbwqb7ih9d7564ifcxr5ssxd"; })
   (fetchNuGet { pname = "System.Xml.XmlDocument"; version = "4.3.0"; sha256 = "0bmz1l06dihx52jxjr22dyv5mxv6pj4852lx68grjm7bivhrbfwi"; })
-  (fetchNuGet { pname = "YamlDotNet"; version = "13.1.1"; sha256 = "1jwc9a4p08j0nhlw850v0x31bra13ans9zrklv4nh41zd2h4rszg"; })
+  (fetchNuGet { pname = "YamlDotNet"; version = "13.7.1"; sha256 = "1m2lnfb2r8382fpjyxp79wnbis7l462zksj3618142q53y33bk5z"; })
 ]

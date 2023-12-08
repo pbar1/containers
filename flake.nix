@@ -3,56 +3,62 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
 
-    prowlarr = {
-      # url = "github:Prowlarr/Prowlarr";
-      url = "path:./Prowlarr";
-      flake = false;
-    };
+    prowlarr = { url = "github:Prowlarr/Prowlarr/v1.10.5.4116"; flake = false; };
   };
 
 
-  outputs = { self, nixpkgs, prowlarr }:
-    let
-      pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-    in
-    {
-      # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/dotnet.section.md
-      # https://wuffs.org/blog/joining-the-nixos-pyramid-scheme
-      packages.aarch64-darwin.prowlarr =
-        let
-          ui = pkgs.mkYarnPackage {
-            pname = "prowlarr-ui";
-            version = "0.0.0";
-            src = prowlarr.outPath;
+  outputs = { self, nixpkgs, flake-utils, prowlarr }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        # pkgsLinux = nixpkgs.legacyPackages.x86_64-linux;
 
-            buildPhase = ''
-              yarn --offline build
-            '';
+        prowlarrYarnCache = pkgs.fetchYarnDeps {
+          yarnLock = "${prowlarr.outPath}/yarn.lock";
+          hash = "sha256-Lzw2XCX2EXiETPaz6kHjoIj2bC8RPmg34ZZ07aUa4h4=";
+        };
 
-            installPhase = ''
-              mkdir -p $out
-              cp -R _output/UI $out
-            '';
-
-            distPhase = "true";
-
-            NIX_DEBUG = 7;
-          };
-        in
-        pkgs.buildDotnetModule {
-          pname = "prowlarr";
-          version = "0.0.0";
+        prowlarrUi = pkgs.stdenv.mkDerivation {
+          pname = "prowlarr-ui";
+          version = "1.10.5.4116";
           src = prowlarr.outPath;
 
-          # dotnetRestoreFlags = [ "-p:EnableWindowsTargeting=true" ];
-          dotnetBuildFlags = [ "-p:WarningsNotAsErrors=SA1200" ];
+          nativeBuildInputs = with pkgs; [
+            nodejs
+            yarn
+            yarn2nix-moretea.fixup_yarn_lock
+          ];
+
+          configurePhase = ''
+            export HOME=$(mktemp -d)
+          '';
+
+          buildPhase = ''
+            yarn config --offline set yarn-offline-mirror ${prowlarrYarnCache}
+            fixup_yarn_lock yarn.lock
+            yarn install --offline --frozen-lockfile --ignore-engines --ignore-scripts
+            patchShebangs .
+            yarn build
+          '';
+
+          installPhase = ''
+            mkdir -p $out
+            cp -R _output/UI $out
+          '';
+        };
+
+        prowlarrPkg = pkgs.buildDotnetModule {
+          pname = "prowlarr";
+          version = "1.10.5.4116";
+          src = prowlarr.outPath;
+
+          dotnetBuildFlags = [ "-p:AssemblyVersion=1.10.5.4116" "-p:WarningsNotAsErrors=SA1200" ];
           dotnetInstallFlags = [ "--framework=net6.0" ];
 
-          # projectFile = "src/Prowlarr.sln";
-          # projectFile = "src/NzbDrone.Console/Prowlarr.Console.csproj";
           projectFile = [ "src/NzbDrone.Console/Prowlarr.Console.csproj" "src/NzbDrone.Mono/Prowlarr.Mono.csproj" ];
-          nugetDeps = ./nix/prowlarr-deps.nix;
+          nugetDeps = ./nix/prowlarr/nuget-deps.nix;
 
           dotnet-sdk = pkgs.dotnetCorePackages.sdk_6_0;
           dotnet-runtime = pkgs.dotnetCorePackages.runtime_6_0;
@@ -62,8 +68,12 @@
           runtimeDeps = [ pkgs.ffmpeg ];
 
           postInstall = ''
-            install ${ui}/UI $out/lib/prowlarr/UI
+            cp -r ${prowlarrUi}/UI $out/lib/prowlarr/UI
           '';
         };
-    };
+      in
+      {
+        packages = { prowlarr = prowlarrPkg; };
+      }
+    ); # END flake-utils
 }
