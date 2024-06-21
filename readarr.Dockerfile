@@ -1,5 +1,10 @@
 FROM ghcr.io/hotio/readarr:nightly AS app
-FROM ghcr.io/pbar1/arr-base:latest
+FROM alpine:latest
+
+RUN apk add --no-cache libintl sqlite-libs icu-libs
+
+RUN adduser -D -s /sbin/nologin -G users -u 1000 user && mkdir /config && chown -R user:users /config
+USER user
 
 COPY --from=app --chown=user:users /app/bin /app
 

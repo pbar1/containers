@@ -27,15 +27,6 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build and push (arr-base)
-      uses: docker/build-push-action@v5
-      with:
-        file: arr-base.Dockerfile
-        context: .
-        platforms: linux/amd64,linux/arm64
-        push: true
-        tags: ghcr.io/pbar1/arr-base:latest
-
     - name: Build and push (lidarr)
       uses: docker/build-push-action@v5
       with:

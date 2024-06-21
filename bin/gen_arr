@@ -1,26 +1,27 @@
 #!/usr/bin/env python3
 
+from typing import List
 
-# Taken from here
-# https://github.com/hotio/base/blob/alpine/linux-amd64.Dockerfile
+
 # https://github.com/hotio/radarr/blob/nightly/linux-amd64.Dockerfile
-def gen_dockerfile_base() -> str:
-    return f"""
-FROM alpine:latest
+def gen_arr_dockerfile(
+    app: str,
+    tag: str = "nightly",
+    repo: str = "ghcr.io/hotio",
+    base_image: str = "alpine:latest",
+    extra_apks: List[str] = [],
+) -> str:
+    apks = ["libintl", "sqlite-libs", "icu-libs"]
+    apks.extend(extra_apks)
 
-RUN apk add --no-cache tzdata icu-libs sqlite-libs
+    return f"""
+FROM {repo}/{app}:{tag} AS app
+FROM {base_image}
+
+RUN apk add --no-cache {" ".join(apks)}
 
 RUN adduser -D -s /sbin/nologin -G users -u 1000 user && mkdir /config && chown -R user:users /config
 USER user
-
-LABEL org.opencontainers.image.source https://github.com/pbar1/containers
-""".strip()
-
-
-def gen_dockerfile(app: str, tag: str) -> str:
-    return f"""
-FROM ghcr.io/hotio/{app}:{tag} AS app
-FROM ghcr.io/pbar1/arr-base:latest
 
 COPY --from=app --chown=user:users /app/bin /app
 
@@ -32,22 +33,18 @@ LABEL org.opencontainers.image.source https://github.com/pbar1/containers
 
 
 def main():
-    # Generate the shared base image
-    with open(f"arr-base.Dockerfile", "w+") as f:
-        f.write(gen_dockerfile_base())
-
     # Generate the individual apps
     apps = {
-        "lidarr": "nightly",
-        "prowlarr": "nightly",
-        "radarr": "nightly",
-        "readarr": "nightly",
-        "sonarr": "nightly",
+        "lidarr": ["chromaprint"],
+        "prowlarr": [],
+        "radarr": ["ffmpeg"],
+        "readarr": [],
+        "sonarr": ["ffmpeg"],
     }
-    for app, tag in apps.items():
+    for app, extra_apks in apps.items():
         dockerfile = f"{app}.Dockerfile"
         with open(dockerfile, "w+") as f:
-            f.write(gen_dockerfile(app, tag))
+            f.write(gen_arr_dockerfile(app=app, extra_apks=extra_apks))
 
 
 if __name__ == "__main__":
