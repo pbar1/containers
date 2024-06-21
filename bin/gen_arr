@@ -37,9 +37,9 @@ def main():
     apps = {
         "lidarr": ["chromaprint"],
         "prowlarr": [],
-        "radarr": ["ffmpeg"],
+        "radarr": ["ffmpeg", "python3"],
         "readarr": [],
-        "sonarr": ["ffmpeg"],
+        "sonarr": ["ffmpeg", "python3"],
     }
     for app, extra_apks in apps.items():
         dockerfile = f"{app}.Dockerfile"

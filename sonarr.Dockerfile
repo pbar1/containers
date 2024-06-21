@@ -1,7 +1,7 @@
 FROM ghcr.io/hotio/sonarr:nightly AS app
 FROM alpine:latest
 
-RUN apk add --no-cache libintl sqlite-libs icu-libs ffmpeg
+RUN apk add --no-cache libintl sqlite-libs icu-libs ffmpeg python3
 
 RUN adduser -D -s /sbin/nologin -G users -u 1000 user && mkdir /config && chown -R user:users /config
 USER user
