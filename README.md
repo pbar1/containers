@@ -11,3 +11,4 @@ guidelines.
   - linux/arm64
 
 New images are built via GitHub Actions daily at 08:00 UTC and tagged `latest`.
+
